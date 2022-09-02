@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Data\Cars;
 use App\Http\Controllers\AdminController;
+use App\Models\CarsModel;
 use Faker\Core\File;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -121,6 +123,30 @@ class AdminControllerTest extends TestCase
         "deskripsi" => "",
         "gambar" => ""
       ])->assertRedirect("http://localhost");
+    }
+
+    public function testDeleteData(): void
+    {
+      $gambar = \Illuminate\Http\UploadedFile::fake()
+        ->image("image.jpg");
+      $this->post("/data/tambah", [
+        "brand" => "Toyota",
+        "type" => "Supra",
+        "harga" => 10000,
+        "harga_fullday" => 2000000,
+        "transmisi" => "MT",
+        "deskripsi" => "Lorem Ipsum",
+        "gambar" => $gambar
+      ]);
+
+      $this->get("/data/delete/14");
+
+      $find = CarsModel::query()
+        ->where(["id_mobil" => 14])
+      ->get();
+
+      self::assertTrue(true);
+
     }
 
 }

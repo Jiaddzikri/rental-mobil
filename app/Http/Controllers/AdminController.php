@@ -30,8 +30,12 @@ class AdminController extends Controller
 
   public function dashboard(): View
   {
+    $total_data = CarsModel::query()
+      ->get()->count();
+
     return view("admin/dashboard", [
-      "title" => "Dashboard"
+      "title" => "Dashboard",
+      "total_data" => $total_data
     ]);
   }
 
@@ -183,10 +187,6 @@ class AdminController extends Controller
     ]);
 
     if ($validator->fails()) {
-      return \redirect()
-        ->back()
-        ->withErrors($validator)
-        ->withInput($request->all());
     }
 
     if (is_object($cars->gambar)) {

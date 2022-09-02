@@ -38,7 +38,7 @@
                 <div class="col-lg-6">
                   <div class="small-box bg-success">
                     <div class="inner">
-                      <h3>150</h3>
+                      <h3>{{$total_data}}</h3>
                       <p>Jumlah Mobil</p>
                     </div>
                     <div class="icon">
