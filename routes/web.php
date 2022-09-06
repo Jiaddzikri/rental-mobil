@@ -34,4 +34,11 @@ Route::controller(\App\Http\Controllers\AdminController::class)->group(function(
       ->where("id", "[0-9]+")
       ->name("delete");
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::controller(\App\Http\Controllers\UserController::class)
+  ->group(function() {
+    Route::get("/login", "login")
+      ->name("login");
+    Route::post("/login", "postLogin")
+      ->name("postLogin");
+  });

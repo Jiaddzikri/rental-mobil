@@ -1,0 +1,114 @@
+body {
+  background-color: #0B194A;
+}
+
+.login-wrapper {
+  width: 380px;
+  height: 500px;
+  background-color: rgb(33, 29, 86);
+  margin: 100px 0 0 0;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 7px 29px 0;
+}
+
+.user-login-icon {
+  font-size: 80px;
+  color: #5626C4;
+}
+
+.login-form-control {
+  height: 50px;
+  border-radius: 15px;
+  background-color: transparent;
+  border: 1px solid #5626C4;
+  outline: transparent;
+}
+
+label {
+  font-weight: lighter;
+}
+
+.login-form-control:focus {
+  background-color: transparent;
+  color: #ffffff;
+  font-weight: lighter;
+}
+
+.login-form-control:hover {
+  outline: none;
+}
+
+.login-btn {
+  width: 40%;
+  background: linear-gradient(#0017c2, #5626C4);
+  border: none;
+  border-radius: 40px;
+  color: #cecece;
+  font-weight: lighter;
+}
+
+.wave-container {
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.wave {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#5626C4, #0017c2);
+  display: block;
+  border-radius: 20%;
+
+}
+
+.footer-circle {
+  z-index: -999;
+  display: block;
+  width: 14%;
+  height: 70%;
+  position: absolute;
+  background: linear-gradient(#300088, #000b64);
+  top: 25%;
+  left: 50%;
+  border-radius: 10px;
+}
+
+.login-feedback {
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px){
+  .login-wrapper {
+    width: 600px;
+    height: 80vh;
+  }
+
+  .login-form-control {
+    height: 60px;
+  }
+
+  label {
+    font-weight: lighter;
+    font-size: 24px;
+  }
+
+  .login-feedback {
+    font-size: 1.2rem;
+    margin-top: 5px;
+  }
+
+  .login-btn {
+    width: 40%;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .wave {
+    margin-top: 50px;
+  }
+}

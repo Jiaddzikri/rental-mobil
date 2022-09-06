@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Providers;
+
+use App\Data\User;
+use App\Http\Controllers\UserController;
+use App\Service\implementations\UserServiceImplementations;
+use App\Service\UserService;
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
+
+class UserServiceProvider extends ServiceProvider implements DeferrableProvider
+{
+
+  public function provides()
+  {
+    return [User::class, UserController::class, UserService::class];
+  }
+
+  /**
+   * Register services.
+   *
+   * @return void
+   */
+  public function register()
+  {
+    $this->app->singleton(User::class, function () {
+      return new User();
+    });
+
+    $this->app->singleton(UserService::class, function($app) {
+      return new UserServiceImplementations($app->make(User::class));
+    });
+
+    $this->app->singleton(UserController::class, function ($app) {
+      return new UserController($app->make(User::class), $app->make(UserService::class));
+    });
+
+  }
+
+  /**
+   * Bootstrap services.
+   *
+   * @return void
+   */
+  public function boot()
+  {
+    //
+  }
+}
