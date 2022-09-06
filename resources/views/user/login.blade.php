@@ -1,6 +1,6 @@
 @include("templates.userHeader")
 
-<div class="container-fluid overflow-hidden position-relative">
+<div class="container-fluid d-flex align-items-center justify-content-center overflow-hidden position-relative">
   <div class="row justify-content-center align-items-center ">
     <div class="col-lg-12 d-flex justify-content-center align-items-center">
       <div class="login-wrapper position-relative overflow-hidden">
