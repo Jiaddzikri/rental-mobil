@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Data\Cars;
+use App\Data\Services;
 use App\Http\Controllers\AdminController;
 use App\Models\CarsModel;
 use Illuminate\Contracts\Support\DeferrableProvider;
@@ -21,6 +22,10 @@ class CarsServiceProvider extends ServiceProvider implements DeferrableProvider
    */
   public function register()
   {
+    $this->app->singleton(Services::class, function() {
+      return new Services();
+    });
+
     $this->app->singleton(CarsModel::class, function ($app) {
       return new CarsModel();
     });
@@ -30,7 +35,7 @@ class CarsServiceProvider extends ServiceProvider implements DeferrableProvider
     });
 
     $this->app->singleton(AdminController::class, function ($app) {
-      return new AdminController($app->make(Cars::class));
+      return new AdminController($app->make(Cars::class), $app->make(Services::class));
     });
   }
 

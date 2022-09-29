@@ -1,51 +1,78 @@
 @include("templates.userHeader")
 
-<div class="container-fluid d-flex align-items-center justify-content-center overflow-hidden position-relative">
-  <div class="row justify-content-center align-items-center ">
-    <div class="col-lg-12 d-flex justify-content-center align-items-center">
-      <div class="login-wrapper position-relative overflow-hidden">
-        <div class="row">
-          <div class="col-sm-12 p-3 text-center">
-            <h6><i class="fas fa-user-alt user-login-icon mt-3"></i></h6>
+<div class="container-fluid position-relative login-container d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="login-background-square position-relative d-flex justify-content-center align-items-center">
+        <div class="login-wrapper position-absolute">
+          <div class="row justify-content-center position-relative align-items-center">
+            <div class="col-lg-2 col-md-2 col-sm-2 mt-5 logo-wrapper">
+              <i class="fas fa-user login-logo"></i>
+            </div>
           </div>
-        </div>
-        <div class="row justify-content-center p-4">
-          <div class="col-lg-10">
-            <form action="{{route("postLogin")}}" method="post">
-              <div class="form-group text-white">
-                <label for="exampleInputEmail1"><i class="fas fa-user"></i> Username</label>
-                <input type="text"
-                       class="form-control login-form-control"
-                       id="exampleInputEmail1"
-                       aria-describedby="emailHelp">
-                <div id="validationServer03Feedback" class="login-feedback">
-                  Please provide a valid city.
+          <form action="/login"
+                method="post"
+                enctype="multipart/form-data">
+            <div class="row justify-content-evenly flex-column align-items-center field-wrapper">
+              <div class="col-lg-10 col-md-10 col-sm-10 mt-5">
+                <div class="form-group">
+                  <input type="text"
+                         class="form-control form-field-control"
+                         placeholder="Username"
+                         name="username">
+                </div>
+                <div class="feedback d-flex justify-content-between align-items-center position-relative mt-2">
+                  @error("username")
+                  <div class="login-feedback position-absolute">
+                    {{$message}}
+                  </div>
+                  @enderror
+
+                  @if($feedback["failed"]["username"])
+                    <div class="login-feedback position-absolute">
+                      {{$feedback["failed"]["username"]}}
+                    </div>
+                  @endif
                 </div>
               </div>
-              <div class="form-group text-white">
-                <label for="exampleInputPassword1"><i class="fas fa-key "></i> Password</label>
-                <input type="password"
-                       class="form-control login-form-control"
-                       id="exampleInputPassword1">
-                <div id="validationServer03Feedback" class=" login-feedback">
-                  Please provide a valid city.
+              <div class="col-lg-10 col-md-10 col-sm-10 mt-4">
+                <div class="form-group d-flex justify-content-evenly align-items-center flex-wrap position-relative">
+                  <input type="password"
+                         class="form-control form-field-control"
+                         placeholder="Password"
+                         name="password">
+                  <i class="fas fa-eye position-absolute show-hide-password"></i>
+                </div>
+                <div class="feedback d-flex justify-content-between align-items-center position-relative mt-2">
+                  @error("password")
+                  <div class="login-feedback position-absolute">
+                    {{$message}}
+                  </div>
+                  @enderror
+
+                  @if($feedback["failed"]["password"])
+                    <div class="login-feedback position-absolute">
+                      {{$feedback["failed"]["password"]}}
+                    </div>
+                  @endif
+                  <a href=""
+                     class="forget-password position-absolute">Lupa Password?</a>
                 </div>
               </div>
-              <button type="submit"
-                      class="btn btn-primary login-btn mt-1">Submit
-              </button>
-            </form>
-          </div>
-        </div>
-        <div class="wave-container">
-          <div class="wave"></div>
+              <div class="col-lg-10 col-md-10 col-sm-10 col mt-4">
+                <button type="submit"
+                        class="btn btn-primary login-btn">Login
+                </button>
+                <input type="hidden"
+                       name="_token"
+                       value="{{csrf_token()}}">
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer-circle">
-  </div>
 </div>
-
 
 @include("templates.userFooter")

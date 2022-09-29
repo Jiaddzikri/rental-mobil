@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(\App\Http\Controllers\HomeController::class)->group(function() {
+  Route::get("/", "index");
+  Route::get("/about", "about");
+  Route::get("/data/mobil", "dataMobil");
 });
 
 Route::controller(\App\Http\Controllers\AdminController::class)->group(function() {
@@ -23,6 +25,8 @@ Route::controller(\App\Http\Controllers\AdminController::class)->group(function(
     Route::post("/data", "postData");
     Route::get("/data/tambah", "tambahMobil");
     Route::post("/data/tambah", "postTambahMobil");
+    Route::get("/admin/services", "listServices");
+    Route::post("/admin/services", "addListServices");
 
     Route::get("/data/update/{id}", "update")
       ->where("id", "[0-9]+")

@@ -2,9 +2,11 @@
 
 namespace App\Service;
 
-use App\Models\User;
+use App\Data\User;
+use App\Data\UserRequest;
+use App\Data\UserResponse;
 
 interface UserService
 {
-  public function postLogin(User $User): User;
+  public function postLogin(UserRequest $request): UserResponse;
 }

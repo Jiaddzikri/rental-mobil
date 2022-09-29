@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Data\Cars;
+use App\Data\Services;
 use App\Http\Controllers\AdminController;
 use App\Models\CarsModel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -36,6 +37,14 @@ class CarsServiceProviderTest extends TestCase
       $admin_2 = $this->app->make(AdminController::class);
 
       self::assertSame($admin_1, $admin_2);
+    }
+
+    public function testServices(): void
+    {
+      $services1 = $this->app->make(Services::class);
+      $services2 = $this->app->make(Services::class);
+
+      self::assertSame($services1, $services2);
     }
 
 }

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Data\Cars;
+use App\Data\Services;
 use App\DataTables\CarsDataTable;
 use App\Exceptions\CarsDataValidationException;
 use App\Models\CarsModel;
+use App\Models\IconsModel;
+use App\Models\ServicesModel;
 use Carbon\Factory;
 use Cassandra\Date;
 use Dotenv\Validator;
@@ -24,7 +27,7 @@ use Yajra\DataTables\DataTables;
 
 class AdminController extends Controller
 {
-  public function __construct(public Cars $cars)
+  public function __construct(public Cars $cars, public Services $services)
   {
   }
 
@@ -155,7 +158,7 @@ class AdminController extends Controller
   public function postUpdate(Request $request): Response|RedirectResponse
   {
     $cars = $this->cars;
-    $cars->id = (int)$request->post("id_mobil", null);
+    $cars->id = (int) $request->post("id_mobil", null);
     $cars->brand = $request->post("brand", null);
     $cars->type = $request->post("type", null);
     $cars->harga = $request->post("harga", null);
@@ -187,6 +190,10 @@ class AdminController extends Controller
     ]);
 
     if ($validator->fails()) {
+      return \redirect()
+        ->back()
+        ->withErrors($validator)
+        ->withInput($request->all());
     }
 
     if (is_object($cars->gambar)) {
@@ -229,5 +236,57 @@ class AdminController extends Controller
       ->delete();
 
     return \redirect("/data");
+  }
+
+  public function listServices(): View
+  {
+    $icons = IconsModel::all();
+    return view("admin/services", [
+      "title" => "Admin | Services",
+      "message" => [
+        "success" => null
+      ],
+      "icons" => $icons
+    ]);
+  }
+
+  public function addListServices(Request $request): Response|RedirectResponse
+  {
+    $this->services->icon = $request->post("icon");
+    $this->services->title = $request->post("title");
+    $this->services->description = $request->post("deskripsi");
+    $icons = IconsModel::all();
+
+
+    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+      "icon" => "required|max:50",
+      "title" => "required|max:50",
+      "deskripsi" => "required"
+    ]);
+
+
+    if ($validator->fails()) {
+      return \redirect()
+        ->back()
+        ->withErrors($validator)
+        ->withInput($request->all());
+    }
+
+    ServicesModel::query()
+      ->insert([
+        "icon" => $this->services->icon,
+        "title" => $this->services->title,
+        "deskripsi" => $this->services->description
+      ]);
+
+    return \response()
+      ->view("admin/services", [
+        "title" => "Admin | Services",
+        "message" => [
+          "success" => "Data Berhasil Ditambah"
+        ],
+        "icons" => $icons
+      ]);
+
   }
 }

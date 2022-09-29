@@ -131,6 +131,13 @@
               <p>Tambah Data</p>
             </a>
           </li>
+          <li class="nav-item menu-open">
+            <a href="/admin/services"
+               class="nav-link">
+              <i class="fas fa-plus nav-icon"></i>
+              <p>Tambah Services</p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Data\User;
+use App\Data\UserRequest;
+use App\Data\UserResponse;
 use App\Http\Controllers\UserController;
 use App\Service\implementations\UserServiceImplementations;
 use App\Service\UserService;
@@ -28,12 +30,20 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
       return new User();
     });
 
+    $this->app->singleton(UserRequest::class, function() {
+      return new UserRequest();
+    });
+
+    $this->app->singleton(UserResponse::class, function() {
+      return new UserResponse();
+    });
+
     $this->app->singleton(UserService::class, function($app) {
-      return new UserServiceImplementations($app->make(User::class));
+      return new UserServiceImplementations($app->make(UserResponse::class));
     });
 
     $this->app->singleton(UserController::class, function ($app) {
-      return new UserController($app->make(User::class), $app->make(UserService::class));
+      return new UserController($app->make(UserRequest::class), $app->make(UserService::class));
     });
 
   }

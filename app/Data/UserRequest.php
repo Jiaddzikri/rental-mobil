@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-class User
+class UserRequest
 {
   public ?string $username = null;
   public ?string $email = null;
