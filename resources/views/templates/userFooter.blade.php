@@ -22,7 +22,7 @@
       <div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
         <div class="footer-list d-flex align-items-start justify-content-center flex-column">
           <h5 class="mb-3"><i class="fas fa-phone"></i> Kontak</h5>
-          <p><i class="fas fa-mail-bulk"></i> testemail@gmail.com</p>
+          <p><i class="fas fa-envelope"></i> testemail@gmail.com</p>
           <p><i class="fa-brands fa-whatsapp-square"></i> 08xxxxxxxx</p>
           <p><i class="fa-brands fa-square-instagram"></i> @testig_17</p>
         </div>

@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\Cars;
 use App\Models\CarsModel;
 use App\Models\ServicesModel;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-  public function index(): View
+  public function index(Request $request): View|RedirectResponse
   {
+    if(session()->has("id")) {
+      dd("OK");
+    }
+
     $servicesList = ServicesModel::all();
     return \view("home/home", [
       "title" => "Page | Home",

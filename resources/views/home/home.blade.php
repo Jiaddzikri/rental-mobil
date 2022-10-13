@@ -1,46 +1,43 @@
 @include("templates.userHeader")
 <div class="container-fluid home-head-container overflow-hidden">
-  <div class="row align-items-center justify-content-center row-header">
+  <div class="row align-items-center justify-content-center row-header mt-5">
     <div class="col-lg-6 col-md-12 col-sm-12">
       <div class="position-relative d-block text-header">
         <h1 class="text-head">Temukan Mobil Yang membuat anda nyaman.</h1>
-        <p>Kami Menyewakan Mobil dengan harga yang bersahabat, serta sopir yang berpengalaman dengan harga yang
+        <p>Kami Menyewakan Mobil dengan harga yang bersahabat, serta sopir <br> yang berpengalaman dengan harga yang
           bersahabat.</p>
-        <button type="button"
+        <a href="/data/mobil"><button type="button"
                 class="btn btn-primary home-header-button">List Mobil <i class="fas fa-arrow-right"></i>
-        </button>
+        </button></a>
       </div>
     </div>
     <div class="col-lg-6 col-md-12 col-sm-12">
       <div class="d-block position-relative d-flex align-items-center justify-content-center main-image-container ">
         <img class="main-image"
              src="{{asset("user_assets/dist/img/gambar-mobil.png")}}"
-             alt="">
+             alt="main-image">
       </div>
     </div>
   </div>
 </div>
 
-<div class="container-fluid home-container overflow-hidden mb-5">
+<div class="container-fluid home-container overflow-hidden  mb-5">
   <div class="row">
     <div class="col text-center mt-5">
       <h1><i class="fas fa-hands-helping"></i> Layanan Kami</h1>
     </div>
   </div>
-  <div class="row justify-content-center align-items-center mt-3">
-    <div class="col-lg-10 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
-      <div class="row justify-content-center align-items-center">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-lg-10 col-md-12 col-sm-10">
+      <div class="row justify-content-start align-items-start mt-2">
         @foreach($servicesList as $data)
-          <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-            <div class="card mt-4">
-              <div class="card-body home-card">
-                <h1 class="card-title text-center mb-4" style="font-size: 4rem"><i class="{{$data->icon}}"></i></h1>
-                <h6 class="card-subtitle mb-2 text-muted">{{$data->title}}</h6>
-                <p class="card-text">{{$data->deskripsi}}</p>
-                <a href="#"
-                   class="card-link">Card link</a>
-                <a href="#"
-                   class="card-link">Another link</a>
+          <div class="col-lg-4 col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
+            <div class="card mt-4 text-center home-card">
+              <div class="card-body home-body-card">
+                <h1 class="card-title text-center mb-4"
+                    style="font-size: 5rem"><i class="{{$data->icon}}"></i></h1>
+                <h5 class="card-subtitle mb-2 text-muted">{{$data->title}}</h5>
+                <p class="card-text home-card-description">{{$data->deskripsi}}</p>
               </div>
             </div>
           </div>
@@ -50,7 +47,7 @@
   </div>
   <div class="row mt-5">
     <div class="col text-center mt-5">
-      <h1><i class="fas fa-map"></i> Temukan Kami</h1>
+      <h1><i class="fas fa-"></i> Temukan Kami</h1>
     </div>
   </div>
   <div class="row mt-5 justify-content-center align-items-center mb-5">

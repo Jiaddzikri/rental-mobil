@@ -26,6 +26,7 @@ class UserServiceImplementations implements UserService
         $this->response->username = $userTable->username;
         $this->response->email  = $userTable->email;
         $this->response->password = $userTable->password;
+        $this->response->role = $userTable->role;
 
         return $this->response;
       } else {

@@ -5,25 +5,17 @@ namespace App\Http\Controllers;
 
 use App\Data\Cars;
 use App\Data\Services;
-use App\DataTables\CarsDataTable;
-use App\Exceptions\CarsDataValidationException;
 use App\Models\CarsModel;
 use App\Models\IconsModel;
 use App\Models\ServicesModel;
-use Carbon\Factory;
-use Cassandra\Date;
-use Dotenv\Validator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rules\File;
-use Ramsey\Collection\Collection;
-use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
+use function redirect;
 
 class AdminController extends Controller
 {
@@ -91,7 +83,7 @@ class AdminController extends Controller
     $cars->deskripsi = $request->post("deskripsi", "Deskripsi");
     $cars->gambar = $request->file("gambar");
 
-    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), [
       "brand" => "required|max:255",
       "type" => "required|max:255",
       "transmisi" => "required",
@@ -114,7 +106,7 @@ class AdminController extends Controller
     ]);
 
     if ($validator->fails()) {
-      return \redirect()
+      return redirect()
         ->back()
         ->withErrors($validator)
         ->withInput($request->all());
@@ -158,7 +150,7 @@ class AdminController extends Controller
   public function postUpdate(Request $request): Response|RedirectResponse
   {
     $cars = $this->cars;
-    $cars->id = (int) $request->post("id_mobil", null);
+    $cars->id = (int)$request->post("id_mobil", null);
     $cars->brand = $request->post("brand", null);
     $cars->type = $request->post("type", null);
     $cars->harga = $request->post("harga", null);
@@ -167,7 +159,7 @@ class AdminController extends Controller
     $cars->deskripsi = $request->post("deskripsi", null);
     $cars->gambar = $request->file("gambar") ?? $request->post("hidden_gambar");
 
-    $validator = \Illuminate\Support\Facades\Validator::make($request->except(["id"]), [
+    $validator = Validator::make($request->except(["id"]), [
       "brand" => "required",
       "type" => "required",
       "harga" => "required|numeric",
@@ -190,7 +182,7 @@ class AdminController extends Controller
     ]);
 
     if ($validator->fails()) {
-      return \redirect()
+      return redirect()
         ->back()
         ->withErrors($validator)
         ->withInput($request->all());
@@ -215,7 +207,7 @@ class AdminController extends Controller
 
     $cars = CarsModel::query()
       ->where(["id_mobil" => $cars->id])
-      ->get();
+      ->first();
 
     return \response()
       ->view("admin/update", [
@@ -229,16 +221,30 @@ class AdminController extends Controller
 
   public function delete(Request $request, int $id): RedirectResponse
   {
-    $input = $id;
+
+    $table = CarsModel::query()
+      ->where(["id_mobil" => $id])
+      ->first();
+
+    unlink("storage/pictures/" . $table->gambar);
 
     CarsModel::query()
-      ->where(["id_mobil" => $input])
+      ->where(["id_mobil" => $id])
       ->delete();
 
-    return \redirect("/data");
+    return redirect("/data");
   }
 
-  public function listServices(): View
+  public function listDataServices(): View
+  {
+    $dataServices = ServicesModel::all();
+    return \view("admin/listServices", [
+      "title" => "Admin | Tambah Services",
+      "dataServices" => $dataServices
+    ]);
+  }
+
+  public function listIconServices(): View
   {
     $icons = IconsModel::all();
     return view("admin/services", [
@@ -250,6 +256,7 @@ class AdminController extends Controller
     ]);
   }
 
+
   public function addListServices(Request $request): Response|RedirectResponse
   {
     $this->services->icon = $request->post("icon");
@@ -258,7 +265,7 @@ class AdminController extends Controller
     $icons = IconsModel::all();
 
 
-    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+    $validator = Validator::make($request->all(), [
       "icon" => "required|max:50",
       "title" => "required|max:50",
       "deskripsi" => "required"
@@ -266,7 +273,7 @@ class AdminController extends Controller
 
 
     if ($validator->fails()) {
-      return \redirect()
+      return redirect()
         ->back()
         ->withErrors($validator)
         ->withInput($request->all());
@@ -287,6 +294,29 @@ class AdminController extends Controller
         ],
         "icons" => $icons
       ]);
+  }
 
+  public function dataServicesApi(Request $request, int $id): JsonResponse
+  {
+    $servicesData = DB::table("services")
+      ->where(["id" => $id])
+      ->first();
+    if ($servicesData == null) {
+      $data = [
+        "status" => 404,
+        "message" => "Data Tidak Ditemukan"
+      ];
+    } else {
+      $data = [
+        "status" => 200,
+        "data" => [
+          "icon" => $servicesData->icon,
+          "title" => $servicesData->title,
+          "description" => $servicesData->deskripsi
+        ]
+      ];
+    }
+    return \response()
+      ->json($data, $data["status"]);
   }
 }

@@ -7,14 +7,17 @@
   <meta http-equiv="X-UA-Compatible"
         content="ie=edge">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset("user_assets/dist/css/bootstrap.css")}}">
-  <link rel="stylesheet" href="{{asset("admin_assets/plugins/fontawesome-free/css/all.css")}}">
-  <link rel="stylesheet" href="{{asset("user_assets/dist/css/rental-mobil.css")}}">
+  <link rel="stylesheet"
+        href="{{asset("user_assets/dist/css/bootstrap.css")}}">
+  <link rel="stylesheet"
+        href="{{asset("admin_assets/plugins/fontawesome-free/css/all.css")}}">
+  <link rel="stylesheet"
+        href="{{asset("user_assets/dist/css/rental-mobil.css")}}">
   <title>{{$title}}</title>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm position-fixed">
   <a class="navbar-brand ml-5"
      href="#">ArhamTrans</a>
   <button class="navbar-toggler"
@@ -28,7 +31,7 @@
   </button>
   <div class="collapse navbar-collapse"
        id="navbarNav">
-    <ul class="navbar-nav mr-5">
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link"
            href="/">Home <span class="sr-only">(current)</span></a>
@@ -39,8 +42,14 @@
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           href="/data/mobil">Data</a>
+           href="/data/mobil">List Mobil</a>
+      </li>
+    </ul>
+      <ul class="navbar-nav ml-auto mt-3">
+      <li class="nav-item ">
+        <p class="nav-link"><i class="fa-brands fa-whatsapp"></i> 08953344357539 | <i class="fas fa-envelope"></i> jiadsetiawan140604@gmail.com</p>
       </li>
     </ul>
   </div>
 </nav>
+

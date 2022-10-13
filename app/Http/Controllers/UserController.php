@@ -53,7 +53,12 @@ class UserController extends Controller
     }
 
     try {
-      $this->user_service->postLogin($this->request);
+      $postLogin = $this->user_service->postLogin($this->request);
+
+      if($postLogin->role == "admin") {
+        $request->session()->put("admin", $this->request->username);
+        $request->session()->put("isAdmin", true);
+      }
 
       return redirect("/");
     } catch (UserValidationException $exception) {

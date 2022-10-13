@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
           ->insert([
             "email" => "test@gmail.com",
             "username" => "usertest",
+            "role" => "admin",
             "password" => password_hash("test", PASSWORD_BCRYPT)
           ]);
     }

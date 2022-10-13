@@ -40,12 +40,6 @@
   <link rel="icon"
         style="width: 1080px; height: 1080px;"
         href="{{asset("admin_assets/dist/img/arhamlogo.jpg")}}">
-  <link rel="stylesheet"
-        type="text/css"
-        href="{{asset("datatables/datatables.css")}}">
-  <link rel="stylesheet"
-        type="text/css"
-        href="{{asset("datatables/Buttons-2.2.3/css/buttons.bootstrap4.css")}}">
 </head>
 <body class="sidebar-mini layout-fixed bg-dark">
 <div class="wrapper">
@@ -124,6 +118,16 @@
                 Data Mobil
               </p>
             </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="/admin/services/data"
+               class="nav-link">
+              <i class="nav-icon fas fa-hands-helping"></i>
+              <p>
+                Data Services
+              </p>
+            </a>
+          </li>
           <li class="nav-item menu-open">
             <a href="/data/tambah"
                class="nav-link">

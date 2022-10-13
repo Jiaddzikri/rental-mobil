@@ -2,12 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Data\User;
 use App\Data\UserRequest;
 use App\Exceptions\UserValidationException;
 use App\Service\UserService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class UserServiceTest extends TestCase

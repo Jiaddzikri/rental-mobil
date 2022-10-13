@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new  class extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ return new  class extends Migration
      */
     public function up()
     {
-        Schema::create('user_models', function (Blueprint $table) {
-            $table->char("username", 40)->primary();
-            $table->char("email", 50)->unique();
-            $table->char("password", 60);
-            $table->enum("role", ["user", "admin"]);
+        Schema::create('icons', function (Blueprint $table) {
+            $table->char("icon");
         });
     }
 
@@ -28,6 +25,6 @@ return new  class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_models');
+        Schema::dropIfExists('icons');
     }
 };

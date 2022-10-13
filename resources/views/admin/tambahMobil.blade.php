@@ -116,16 +116,18 @@
                   <div class="custom-file">
                     <input type="file"
                            name="gambar"
-                           class="custom-file-input"
+                           class="custom-file-input admin-image-input"
                            id="inputGroupFile01"
-                           aria-describedby="inputGroupFileAddon01" autocomplete="off">
-                    <label class="custom-file-label"
+                           aria-describedby="inputGroupFileAddon01" autocomplete="off" onchange="imagePreview()">
+                    <label class="custom-file-label admin-image-label"
                            for="inputGroupFile01">Pilih Gambar Mobil...</label>
                   </div>
                   @error("gambar")
                   <div class="text-danger">{{$message}}</div>
                   @enderror
                 </div>
+                  <img class="admin-image-preview" src="{{asset("admin_assets/dist/img/default.jpg")}}"
+                       alt="" style="width: 15rem; height: 10rem">
               </div>
               <input type="hidden"
                      name="_token"

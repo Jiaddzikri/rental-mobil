@@ -2,8 +2,14 @@ body {
   background: #f6f6f6;
 }
 
+.navbar {
+  width: 100vw;
+  z-index: 100;
+  top: 0;
+}
+
 ::-webkit-scrollbar {
-  width: 0.6rem;
+  width: 0.4rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -17,6 +23,10 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
   background: #9f9f9f;
+}
+
+::-webkit-scrollbar:hover {
+  width: .6rem;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -109,7 +119,7 @@ body {
 /* Home Page */
 
 .home-head-container {
-  height: 80vh;
+  height: 90vh;
   background: #e7e7e7;
 }
 
@@ -122,6 +132,14 @@ body {
   height: 20rem;
   top: 9rem;
   left: 5rem;
+  -ms-transform: translateX(-8rem);
+  transform: translateX(-8rem);
+  opacity: 0;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
 }
 
 .text-head {
@@ -131,11 +149,19 @@ body {
 .main-image-container {
   top: 5rem;
   right: 0;
+  -ms-transform: translateX(8rem);
+  transform: translateX(8rem);
+  opacity: 0;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
 }
 
 .main-image {
-  width: 24rem;
-  height: 19rem;
+  width: 20rem;
+  height: 16rem;
 }
 
 .home-header-button {
@@ -155,8 +181,28 @@ body {
   background: #252525;
 }
 
-.home-card  {
-  height: max-content;
+.home-card {
+  background: transparent;
+  position: relative;
+  padding: 2rem 1rem 0 1rem;
+  width: 25rem;
+  min-height: 20rem;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: none;
+  overflow: hidden;
+  transform: translateY(8rem);
+  opacity: 0;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
+}
+
+.card-body {
+  z-index: 9;
 }
 
 .map {
@@ -164,6 +210,15 @@ body {
   -webkit-border-radius: .5rem;
   -moz-border-radius: .5rem;
   border-radius: .5rem;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
+  -ms-transform: translateY(8rem);
+  transform: translateY(8rem);
+  opacity: .2;
+
 }
 
 .main-footer {
@@ -171,6 +226,9 @@ body {
   height: max-content;
   padding: 3rem;
   background: #e7e7e7;
+  -webkit-border-radius: 60px 60px 0 0;
+  -moz-border-radius: 60px 60px 0 0;
+  border-radius: 60px 60px 0 0;
 }
 
 .footer-list {
@@ -192,11 +250,63 @@ body {
 .about-hero {
   display: inline-block;
   width: 100%;
-  height: 30rem;
+  height: 20rem;
   background: #d9d9d9;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  transform: translateX(-6rem);
+  opacity: .2;
+  -webkit-transition: .8s ease;
+  -moz-transition: .8s ease;
+  -ms-transition: .8s ease;
+  -o-transition: .8s ease;
+  transition: .8s ease;
+}
+
+.about-title {
+  transform: translateX(6rem);
+  opacity: .2;
+  -webkit-transition: .8s ease;
+  -moz-transition: .8s ease;
+  -ms-transition: .8s ease;
+  -o-transition: .8s ease;
+  transition: .8s ease;
+}
+
+.about-text {
+  font-size: 1.4rem;
+  transform: translateX(6rem);
+  opacity: .2;
+  -webkit-transition: .8s ease;
+  -moz-transition: .8s ease;
+  -ms-transition: .8s ease;
+  -o-transition: .8s ease;
+  transition: .8s ease;
 }
 
 /* end about page */
+
+/* list Mobil */
+.list-card-wrapper {
+  min-height: 23rem;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: radial-gradient(#f8f8f8, #EEEEEE);
+  box-shadow: 0 0 20px #d7d7d7;
+  border: none;
+  -ms-transform: translateY(10rem);
+  transform: translateY(10rem);
+  opacity: .2;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
+  transition: 1s ease;
+}
+
+/* End list mobil */
 
 @media screen and (max-width: 990.98px) {
   /* login page */
@@ -247,19 +357,10 @@ body {
     margin-left: 0;
   }
 
-  .card-wrapper {
-    width: 100%;
+  .home-card {
+    width: 60vw;
+    min-height: 18rem;
   }
-
-  .card-columns {
-    margin: 0 2.4rem 0 -1.8rem;
-  }
-
-  .card {
-    width: 16rem;
-  }
-
-
   /*  end Home Page*/
 }
 
@@ -331,24 +432,44 @@ body {
 
   /* end login page */
   /*  home page*/
+  .text-header {
+    margin: .2rem 0 0 0;
+  }
+
   .text-head {
     font-size: 2.5rem;
   }
 
   .home-head-container {
-    padding: 0 0 2rem 0;
+    height: 95vh;
   }
 
   .footer-list {
     margin-left: 0;
   }
 
-  .card-columns {
-    margin: 0 .6rem 0 -.6rem;
+  .main-image {
+    width: 17rem;
+    height: 13rem;
   }
 
+  .home-card {
+    width: 90vw;
+    min-height: 18rem;
+    text-align: center;
+  }
 
   /* end home page */
+  /*  about page */
+  .about-title {
+    margin: 4rem 0 0 0;
+  }
+
+  .about-text {
+    margin: 2.5rem 0 0 0;
+  }
+
+  /*  end about page*/
 }
 
 @media screen and (max-width: 320px) {
@@ -381,6 +502,7 @@ body {
   .footer-list {
     margin-left: 0;
   }
+
 
   /*  end home page*/
 }

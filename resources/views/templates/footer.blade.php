@@ -33,6 +33,7 @@
 <!-- AdminLTE App -->
 <script src="{{ asset("admin_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js") }}"></script>
 <script src="{{ asset("admin_assets/dist/js/adminlte.js") }}"></script>
+<script src="{{asset("admin_assets/dist/js/admin.js")}}"></script>
 
 </body>
 </html>
