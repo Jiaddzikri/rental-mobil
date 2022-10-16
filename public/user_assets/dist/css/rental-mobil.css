@@ -494,6 +494,11 @@ body {
 
   /*  end login page */
   /*  home page */
+  .home-head-container {
+    height: max-content;
+    padding: 0 0 3rem 0;
+  }
+
   .main-image {
     width: 20rem;
     height: 15rem;

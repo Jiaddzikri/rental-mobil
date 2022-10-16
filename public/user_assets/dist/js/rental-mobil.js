@@ -46,7 +46,7 @@ homeCardEffect();
 function homeMap() {
   window.addEventListener("scroll", () => {
     let scrollY = window.scrollY;
-    if (scrollY >= 800) {
+    if (scrollY >= 300 || scrollY >= 800) {
       map.style.transform = `translateY(${0})`;
       map.style.opacity = 1;
     }

@@ -46,7 +46,7 @@
                             Update
                           </button>
                         </a>
-                        <a href="">
+                        <a href="/admin/services/delete/{{$data->id}}">
                           <button type="button"
                                   class="btn btn-danger"
                                   data-toggle="modal"
@@ -86,28 +86,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="text-dark">
+        <form  class="text-dark updateServicesForm" name="updateServicesForm" action="/admin/services/data" method="POST">
           <div class="form-group">
+            <input class="services-update-id" type="hidden" name="id" value="">
             <label for="updateIcon">Icon</label>
             <input type="text"
                    class="form-control update-icon-services"
                    id="updateIcon"
-                   aria-describedby="emailHelp">
+                   aria-describedby="emailHelp" name="icon">
           </div>
           <div class="form-group">
             <label for="updateTitle">Title</label>
             <input type="text"
                    class="form-control update-title-services"
-                   id="updateTitle">
+                   id="updateTitle" name="title">
           </div>
           <div class="form-group">
             <label for="updateDescription">Services Description</label>
             <textarea class="form-control update-description-services"
                       id="updateDescription"
-                      rows="3"></textarea>
+                      rows="3" name="description"></textarea>
           </div>
           <button type="submit"
-                  class="btn btn-primary">Submit
+                  class="btn btn-primary update-services-button">Submit
           </button>
         </form>
       </div>
@@ -133,7 +134,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p class="text-dark">Data Berhasil DiHapus</p>
+        <p class="text-dark">{{$message["failed"] ?? "Data Berhasil Dihapus"}}</p>
       </div>
     </div>
   </div>

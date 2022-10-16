@@ -40,6 +40,10 @@ Route::controller(AdminController::class)->group(function () {
     ->middleware([AdminMiddleware::class]);
   Route::post("/admin/services", "addListServices")
     ->middleware([AdminMiddleware::class]);
+  Route::get("/admin/services/delete/{id}", "deleteServices")
+    ->where("id", "[0-9]+")
+    ->middleware([AdminMiddleware::class]);
+
 
   Route::get("/data/update/{id}", "update")
     ->where("id", "[0-9]+")
@@ -58,7 +62,11 @@ Route::controller(AdminController::class)->group(function () {
 //  Api Endpoint
   Route::get("/services/data/{id}", "dataServicesApi")
     ->where("id", "[0-9]+");
+
+  Route::post("/admin/services/data", "updateDataServices")
+    ->middleware([AdminMiddleware::class]);
 });
+
 
 Route::controller(UserController::class)
   ->group(function () {

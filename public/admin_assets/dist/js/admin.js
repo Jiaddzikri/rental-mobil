@@ -13,12 +13,14 @@ function imagePreview() {
   }
 }
 
-function servicesUpdate() {
-  const servicesUpdateButton = document.querySelectorAll(".services-update-button");
-  const updateIconServices = document.querySelector(".update-icon-services");
-  const updateTitleServices = document.querySelector(".update-title-services");
-  const updateDescriptionServices = document.querySelector(".update-description-services");
+const servicesUpdateButton = document.querySelectorAll(".services-update-button");
+const updateIconServices = document.querySelector(".update-icon-services");
+const updateTitleServices = document.querySelector(".update-title-services");
+const updateDescriptionServices = document.querySelector(".update-description-services");
+const updateServicesButton = document.querySelector(".update-services-button");
+const servicesUpdateId = document.querySelector(".services-update-id");
 
+function servicesUpdate() {
   servicesUpdateButton.forEach((element) => {
     element.addEventListener("click", (y) => {
       y.preventDefault();
@@ -27,6 +29,7 @@ function servicesUpdate() {
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
           let response = JSON.parse(xhr.responseText);
+          servicesUpdateId.value = response.data.id;
           updateIconServices.value = response.data.icon;
           updateTitleServices.value = response.data.title;
           updateDescriptionServices.value = response.data.description;
@@ -37,3 +40,26 @@ function servicesUpdate() {
   });
 }
 servicesUpdate();
+
+function servicesUpdateForm() {
+  const updateServicesForm = document.forms.namedItem("updateServicesForm");
+  const csrf_token = document.querySelector("meta[name='csrf-token']");
+
+  updateServicesForm.addEventListener("submit", (btn) => {
+    let formData = new FormData(updateServicesForm);
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4 && xhr.status === 200) {
+        let response = JSON.parse(xhr.responseText);
+        updateIconServices.value = response.data.icon;
+        updateTitleServices.value = response.data.title;
+        updateDescriptionServices.value = response.data.description;
+      }
+    }
+    xhr.open('POST','/admin/services/data', true);
+    xhr.setRequestHeader("X-CSRF-TOKEN", csrf_token.getAttribute("content"));
+    xhr.send(formData);
+    btn.preventDefault();
+  });
+}
+servicesUpdateForm();

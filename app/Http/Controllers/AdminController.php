@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use function redirect;
 
@@ -239,9 +240,45 @@ class AdminController extends Controller
   {
     $dataServices = ServicesModel::all();
     return \view("admin/listServices", [
-      "title" => "Admin | Tambah Services",
-      "dataServices" => $dataServices
+      "title" => "Admin | List Services",
+      "dataServices" => $dataServices,
+      "message" => [
+        "success" => null,
+        "failed" => null
+      ]
     ]);
+  }
+
+  public function updateDataServices(Request $request): JsonResponse
+  {
+    $table = DB::table("services")
+      ->where(["id" => $request->post("id")]);
+
+
+    $table->update([
+      "icon" => $request->post("icon"),
+      "title" => $request->post("title"),
+      "deskripsi" => $request->post("description")
+    ]);
+
+    $services = $table
+      ->first();
+
+    $data = [
+      "response" => 200,
+      "data" => [
+        "icon" => $services->icon,
+        "title" => $services->title,
+        "description" => $services->deskripsi,
+      ],
+      "message" => [
+        "success" => "Data Berhasil Diubah",
+        "failed" => null
+      ]
+    ];
+
+    return \response()
+      ->json($data, $data["response"]);
   }
 
   public function listIconServices(): View
@@ -296,6 +333,30 @@ class AdminController extends Controller
       ]);
   }
 
+  public function deleteServices(Request $request, int $id): RedirectResponse|Response
+  {
+    $table = DB::table("services");
+
+    $listServices = $table
+      ->get();
+
+    if($id == null) {
+      return \response()
+        ->view("admin/listServices", [
+          "title" => "Admin | Services",
+          "listServices" => $listServices,
+          "message" => [
+            "success" => null,
+            "failed" => "Data Gagal Dihapus"
+          ]
+        ]);
+    }
+
+    $table->delete(["id" => $id]);
+
+    return redirect("/admin/services/data");
+  }
+
   public function dataServicesApi(Request $request, int $id): JsonResponse
   {
     $servicesData = DB::table("services")
@@ -310,6 +371,7 @@ class AdminController extends Controller
       $data = [
         "status" => 200,
         "data" => [
+          "id" => $servicesData->id,
           "icon" => $servicesData->icon,
           "title" => $servicesData->title,
           "description" => $servicesData->deskripsi
