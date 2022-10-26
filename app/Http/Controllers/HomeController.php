@@ -12,8 +12,8 @@ class HomeController extends Controller
 {
   public function index(Request $request): View|RedirectResponse
   {
-    if(session()->has("id")) {
-      dd("OK");
+    if(session()->has("admin") && session()->has("isAdmin")) {
+      return redirect("/dashboard");
     }
 
     $servicesList = ServicesModel::all();

@@ -14,17 +14,14 @@
       <div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
         <div class="footer-list d-flex align-items-start justify-content-center flex-column">
           <h5 class="mb-3"><i class="fas fa-map-marked"></i> Lokasi</h5>
-          <p><i class="fas fa-map-marker"></i> Graha Kirana Lt. 6
-            Jl. Yos Sudarso No. 88
-            Jakarta Utara 14350, Indonesia</p>
+          <p><i class="fas fa-map-marker"></i>PBR Puskopad Blok F no.2 Kec. Tanjungsari, Kab. Sumedang, Prov. Jawa Barat.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-center">
         <div class="footer-list d-flex align-items-start justify-content-center flex-column">
           <h5 class="mb-3"><i class="fas fa-phone"></i> Kontak</h5>
-          <p><i class="fas fa-envelope"></i> testemail@gmail.com</p>
-          <p><i class="fa-brands fa-whatsapp-square"></i> 08xxxxxxxx</p>
-          <p><i class="fa-brands fa-square-instagram"></i> @testig_17</p>
+          <p><i class="fas fa-envelope"></i> arhamtrans04@gmail.com</p>
+          <p><i class="fa-brands fa-whatsapp-square"></i> 0895344744154</p>
         </div>
       </div>
     </div>

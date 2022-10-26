@@ -10,7 +10,7 @@
     <div class="col-lg-10 col-md-12 col-sm-12">
       <div class="row mt-5 justify-content-center align-items-center">
         @foreach($dataMobil as $data)
-          <div class="col-lg-4 col-md-12 col-sm-12 mb-5 d-flex justify-content-center">
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-5 d-flex justify-content-center">
             <div class="card overflow-hidden list-card-wrapper"
                  style="width: 20rem;">
               <img src="{{asset("storage/pictures/$data->gambar")}}"

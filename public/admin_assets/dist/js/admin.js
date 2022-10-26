@@ -19,6 +19,7 @@ const updateTitleServices = document.querySelector(".update-title-services");
 const updateDescriptionServices = document.querySelector(".update-description-services");
 const updateServicesButton = document.querySelector(".update-services-button");
 const servicesUpdateId = document.querySelector(".services-update-id");
+const updateModalMessage = document.querySelector(".update-modal-message");
 
 function servicesUpdate() {
   servicesUpdateButton.forEach((element) => {
@@ -54,6 +55,12 @@ function servicesUpdateForm() {
         updateIconServices.value = response.data.icon;
         updateTitleServices.value = response.data.title;
         updateDescriptionServices.value = response.data.description;
+
+        if(response.response === 200) {
+          updateModalMessage.innerText = response.message.success;
+        } else if(response === 404) {
+          updateModalMessage.innerText = response.message.failed;
+        }
       }
     }
     xhr.open('POST','/admin/services/data', true);

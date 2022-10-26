@@ -19,7 +19,7 @@
                   <input type="text"
                          class="form-control form-field-control"
                          placeholder="Username"
-                         name="username">
+                         name="username" autocomplete="off">
                 </div>
                 <div class="feedback d-flex justify-content-between align-items-center position-relative mt-2">
                   @error("username")
@@ -55,8 +55,6 @@
                       {{$feedback["failed"]["password"]}}
                     </div>
                   @endif
-                  <a href=""
-                     class="forget-password position-absolute">Lupa Password?</a>
                 </div>
               </div>
               <div class="col-lg-10 col-md-10 col-sm-10 col mt-4">

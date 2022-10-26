@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
     {
         DB::table("user_models")
           ->insert([
-            "email" => "test@gmail.com",
-            "username" => "usertest",
+            "email" => "arhamtrans04@gmail.com",
+            "username" => "arhamtrans144454",
             "role" => "admin",
-            "password" => password_hash("test", PASSWORD_BCRYPT)
+            "password" => password_hash("8908383jfdsklfdsnvss#$&@^#%#*@", PASSWORD_BCRYPT)
           ]);
     }
 }

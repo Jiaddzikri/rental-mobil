@@ -13,6 +13,9 @@
         href="{{asset("admin_assets/plugins/fontawesome-free/css/all.css")}}">
   <link rel="stylesheet"
         href="{{asset("user_assets/dist/css/rental-mobil.css")}}">
+  <link rel="icon"
+        style="width: 1080px; height: 1080px;"
+        href="{{asset("admin_assets/dist/img/logo.png")}}" type="image/x-icon">
   <title>{{$title}}</title>
 </head>
 <body>
@@ -47,7 +50,7 @@
     </ul>
       <ul class="navbar-nav ml-auto mt-3">
       <li class="nav-item ">
-        <p class="nav-link"><i class="fa-brands fa-whatsapp"></i> 08953344357539 | <i class="fas fa-envelope"></i> jiadsetiawan140604@gmail.com</p>
+        <p class="nav-link"><i class="fa-brands fa-whatsapp"></i> 0895344744154| <i class="fas fa-envelope"></i> arhamtrans04@gmail.com</p>
       </li>
     </ul>
   </div>

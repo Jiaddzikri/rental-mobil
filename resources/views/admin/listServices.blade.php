@@ -76,7 +76,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-dark"
+        <h5 class="modal-title text-dark update-modal-message"
             id="exampleModal">Message</h5>
         <button type="button"
                 class="close"

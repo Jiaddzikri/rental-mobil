@@ -59,6 +59,9 @@ Route::controller(AdminController::class)->group(function () {
     ->name("delete")
     ->middleware([AdminMiddleware::class]);
 
+  Route::get("/admin/logout", "logout")
+    ->middleware([AdminMiddleware::class]);
+
 //  Api Endpoint
   Route::get("/services/data/{id}", "dataServicesApi")
     ->where("id", "[0-9]+");

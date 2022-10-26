@@ -253,7 +253,21 @@ class AdminController extends Controller
   {
     $table = DB::table("services")
       ->where(["id" => $request->post("id")]);
+    $services = $table
+      ->first();
 
+    if ($services === null) {
+      $data = [
+        "response" => 404,
+        "data" => null,
+        "message" => [
+          "success" => null,
+          "failed" => "Data gagal dihapus"
+        ]
+      ];
+      return response()
+        ->json($data, $data["response"]);
+    }
 
     $table->update([
       "icon" => $request->post("icon"),
@@ -261,8 +275,6 @@ class AdminController extends Controller
       "deskripsi" => $request->post("description")
     ]);
 
-    $services = $table
-      ->first();
 
     $data = [
       "response" => 200,
@@ -274,7 +286,8 @@ class AdminController extends Controller
       "message" => [
         "success" => "Data Berhasil Diubah",
         "failed" => null
-      ]
+      ],
+      "services" => $services
     ];
 
     return \response()
@@ -340,7 +353,7 @@ class AdminController extends Controller
     $listServices = $table
       ->get();
 
-    if($id == null) {
+    if ($id == null) {
       return \response()
         ->view("admin/listServices", [
           "title" => "Admin | Services",
@@ -380,5 +393,13 @@ class AdminController extends Controller
     }
     return \response()
       ->json($data, $data["status"]);
+  }
+
+  public function logout(Request $request): RedirectResponse
+  {
+    $request->session()
+      ->forget(["admin", "isAdmin"]);
+
+    return redirect("/");
   }
 }

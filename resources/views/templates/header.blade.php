@@ -40,13 +40,13 @@
 
   <link rel="icon"
         style="width: 1080px; height: 1080px;"
-        href="{{asset("admin_assets/dist/img/arhamlogo.jpg")}}">
+        href="{{asset("admin_assets/dist/img/logo.png")}}" type="image/x-icon">
 </head>
 <body class="sidebar-mini layout-fixed bg-dark">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark navbar-dark">
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-dark d-flex justify-content-between">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -59,9 +59,11 @@
         <a href="/admin"
            class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#"
-           class="nav-link">Contact</a>
+    </ul>
+    <ul class="navbar-nav">
+      <li class="nav-item mr-4">
+        <a href="/admin/logout"
+           class="btn btn-danger">Logout</a>
       </li>
     </ul>
   </nav>
@@ -74,7 +76,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <a href="index3.html"
+          <a href=""
              class="brand-link text-center mr-2">
             <span class="brand-text">ArhamTrans</span>
           </a>
@@ -87,13 +89,13 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{asset("admin_assets/dist/img/user2-160x160.jpg")}}"
+          <img src="{{asset("admin_assets/dist/img/logo.png")}}"
                class="img-circle elevation-2"
                alt="User Image">
         </div>
         <div class="info">
           <a href="#"
-             class="d-block">Alexander Pierce</a>
+             class="d-block">ArhamTrans</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
